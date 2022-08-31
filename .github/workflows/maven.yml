@@ -23,4 +23,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B -e verify --file pom.xml
+
+# Примечание для себя
+# -B — batch mode, неинтерактивный режим (цвета, прогресс);
+# verify — запускаемая фаза (ниже test поэтому тесты тоже будут запускаться) однако стоить помнить, что если
+# оставить фазу package то все цели в POM файле настроенные на фазу позднее package исполнены CI не буду;
+# --file pom.xml — указание на используемый файл проекта.
